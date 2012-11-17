@@ -1,53 +1,33 @@
-require 'singleton'
-
 module Appcache
+	class Config
 
-  ##
-  # Provides convenient access to the Configuration singleton.
-  #
-  def self.configure(&block)
-    if block_given?
-      block.call(Appcache::Configuration.instance)
-    else
-      Appcache::Configuration.instance
-    end
-  end
+		OPTIONS = [
+			:manifest_url
+		]
 
-  class Configuration
-    include Singleton
+		def initialize(&block)
+			set_getter_setter
+			set_defaults
+			instance_eval(&block) if block_given?
+		end
 
-    OPTIONS = [
-      :manifest_url
-    ]
+		def set_defaults
+			@manifest_url = "/application.manifest"
+		end
 
-    attr_accessor *OPTIONS
+		def set_getter_setter
+	    instance_eval(OPTIONS.map do |option|
+	      o = option.to_s
+	      <<-EOS
+	      def #{o}
+	        @#{o}
+	      end
 
-    def initialize # :nodoc
-      set_defaults
-    end
-
-    def set_defaults
-      @manifest_url
-    end
-
-    instance_eval(OPTIONS.map do |option|
-      o = option.to_s
-      <<-EOS
-      def #{o}
-        instance.#{o}
-      end
-
-      def #{o}=(value)
-        instance.#{o} = value
-      end
-      EOS
-    end.join("\n\n"))
-
-    class << self
-      def set_defaults
-        instance.set_defaults
-      end
-    end
-
-  end
+	      def #{o}=(value)
+	        @#{o} = value
+	      end
+	      EOS
+	    end.join("\n\n"))
+		end
+	end
 end

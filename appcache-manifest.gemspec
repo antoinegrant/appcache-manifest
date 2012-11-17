@@ -5,20 +5,14 @@ require "appcache-manifest/version"
 Gem::Specification.new do |s|
   s.name        = "appcache-manifest"
   s.version     = Appcache::Manifest::VERSION
+  s.platform    = Gem::Platform::RUBY
   s.authors     = ["Antoine Grant"]
   s.email       = ["antoinegrant@gmail.com"]
   s.homepage    = ""
-  s.summary     = %q{TODO: Write a gem summary}
-  s.description = %q{TODO: Write a gem description}
-
-  s.rubyforge_project = "appcache-manifest"
-
-  s.files         = `git ls-files`.split("\n")
-  s.test_files    = `git ls-files -- {test,spec,features}/*`.split("\n")
-  s.executables   = `git ls-files -- bin/*`.split("\n").map{ |f| File.basename(f) }
+  s.date        = Date.today.to_s
+  s.summary     = "Convert manifest.yml to application.manifest and add a route to point to it."
+  s.description = ""
+  s.files       = `git ls-files`.split("\n") - %w[appcache-manifest.gemspec Gemfile]
   s.require_paths = ["lib"]
-
-  # specify any dependencies here; for example:
-  # s.add_development_dependency "rspec"
-  # s.add_runtime_dependency "rest-client"
+  # s.executables = ["appcache-manifest"]
 end
