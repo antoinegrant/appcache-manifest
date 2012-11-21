@@ -1,6 +1,6 @@
-== Welcome to AppCache Manifest
+# Welcome to AppCache Manifest
 
-= Rails Route config. Example:
+## Rails Route config. Example:
 
 	Appcache::Manifest.configure do |config|
 		config.version = Rails.application.config.assets.version
