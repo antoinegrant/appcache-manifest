@@ -50,7 +50,7 @@ module Appcache
 						manifest << body
 						
 						[200, {"Content-Type" => "text/cache-manifest"}, [manifest.join("\n")]]
-				}
+				}, :as => :appcache_manifest
 			end
 		end
 	end
