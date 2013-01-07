@@ -1,5 +1,5 @@
 module Appcache
-	class Manifest
-		VERSION = "0.0.1"
-	end
+  class Manifest
+    VERSION = "0.0.1"
+  end
 end
