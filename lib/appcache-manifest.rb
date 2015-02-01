@@ -17,7 +17,7 @@ module Appcache
 
     def set_route
       Rails.application.routes.draw do
-        match @@config.manifest_url => Proc.new {
+        get @@config.manifest_url => Proc.new {
             
             body = []
             body << "" << "NETWORK:"
